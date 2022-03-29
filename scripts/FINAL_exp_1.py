@@ -18,23 +18,6 @@
 #   Tim Keil     
 # ~~~
 
-#
-# ~~~
-# This file is part of the paper:
-#
-#           "A relaxed localized trust-region reduced basis approach for
-#                      optimization of multiscale problems"
-#
-# by: Tim Keil and Mario Ohlberger
-#
-#   https://github.com/TiKeil/Trust-region-TSRBLOD-code
-#
-# Copyright 2019-2022 all developers. All rights reserved.
-# License: Licensed as BSD 2-Clause License (http://opensource.org/licenses/BSD-2-Clause)
-# Authors:
-#   Tim Keil (2022)
-# ~~~
-
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -67,8 +50,8 @@ print_on_ranks = True
     Variables for the experiment and discretization
 '''
 
-coarse_elements = 10
-n = 100
+coarse_elements = 20
+n = 1200
 diameter = np.sqrt(2)/n
 
 two_scale_estimator_for_RBLOD = False
