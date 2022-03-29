@@ -1,3 +1,19 @@
+# ~~~
+# This file is part of the PhD-thesis:
+#
+#           "Adaptive Reduced Basis Methods for Multiscale Problems
+#               and Large-scale PDE-constrained Optimization"
+#
+# by: Tim Keil
+#
+#   https://github.com/TiKeil/Supplementary-Material-for-PhD-thesis
+#
+# Copyright 2019-2022 all developers. All rights reserved.
+# License: Licensed as BSD 2-Clause License (http://opensource.org/licenses/BSD-2-Clause)
+# Authors:
+#   Tim Keil     
+# ~~~
+
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import cm

@@ -1,17 +1,17 @@
 # ~~~
-# This file is part of the paper:
+# This file is part of the PhD-thesis:
 #
-#           "A relaxed localized trust-region reduced basis approach for
-#                      optimization of multiscale problems"
+#           "Adaptive Reduced Basis Methods for Multiscale Problems
+#               and Large-scale PDE-constrained Optimization"
 #
-# by: Tim Keil and Mario Ohlberger
+# by: Tim Keil
 #
-#   https://github.com/TiKeil/Trust-region-TSRBLOD-code
+#   https://github.com/TiKeil/Supplementary-Material-for-PhD-thesis
 #
 # Copyright 2019-2022 all developers. All rights reserved.
 # License: Licensed as BSD 2-Clause License (http://opensource.org/licenses/BSD-2-Clause)
 # Authors:
-#   Tim Keil (2022)
+#   Tim Keil     
 # ~~~
 
 import numpy as np
