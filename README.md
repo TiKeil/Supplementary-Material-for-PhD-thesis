@@ -1,13 +1,13 @@
 ```
 # ~~~
-# This file is part of the paper:
+# This file is part of PhD-thesis:
 #
-#           "A relaxed localized trust-region reduced basis approach for
-#                      optimization of multiscale problems"
+#           "Adaptive Reduced Basis Methods for Multiscale Problems
+#               and Large-scale PDE-constrained Optimization"
 #
-# by: Tim Keil and Mario Ohlberger
+# by: Tim Keil
 #
-#   https://github.com/TiKeil/Trust-region-TSRBLOD-code
+#   https://github.com/TiKeil/Supplementary-Material-for-PhD-thesis
 #
 # Copyright 2019-2022 all developers. All rights reserved.
 # License: Licensed as BSD 2-Clause License (http://opensource.org/licenses/BSD-2-Clause)
@@ -16,30 +16,42 @@
 # ~~~
 ```
 
-In this repository, we provide the code for the numerical experiments in Section 5
-of the paper **"tba"** by Tim Keil and Mario Ohlberger.
-The preprint is available [here](https://arxiv.org/).
+In this repository, we provide information on the code for the numerical experiments in the PhD thesis "Adaptive Reduced Basis Methods for Multiscale Problems and Large-scale PDE-constrained Optimization" by Tim Keil.
+
+# How to quickly find the code used for the respective Experiments in the thesis
+
+Most of the code used for the thesis has been published along with the papers, and corresponding GitHub repositories are available.
+Apart from these, this repository aims to provide missing code and results that were used in the thesis, see below.
+In the following, we itemize each of the numbered experiments:
+
+- Experiment 1: The proof-of-concept experiment is part of this repository, see below.
+- Experiment 2, 3 and 4: see [this repository](https://github.com/TiKeil/NCD-corrected-TR-RB-approach-for-pde-opt)
+- Experiment 5 and 6: see [this repository](https://github.com/TiKeil/Proj-Newton-NCD-corrected-TR-RB-for-pde-opt)
+- Experiment 7 and 8: see [this repository](https://github.com/TiKeil/Petrov-Galerkin-TR-RB-for-pde-opt)
+- Experiment 9: see [this repository](https://github.com/gridlod-community/gridlod-on-perturbations-super)
+- Experiment 10 and 11: see [this repository](https://github.com/TiKeil/Two-scale-RBLOD)
+- Experiment 12 and 13: see [this repository](https://github.com/TiKeil/Trust-region-TSRBLOD-code)
+
+For more insights, we refer to the respective repositories.
+
+# Unpublished code that is part of this repository
+
+Two additional experiments are provided:
+
+1) The proof-of-concept experiment that is used as motivation in Section 2.5.6, as illustration of the TR-RB algorithm in Section 3.5.3, and as the test problem for further approaches in Section 3.6.6.
+
+2) The TR-RBLOD results for Experiment 12 and 13 as well as the problem specifics for Experiment 14, the comparison between the TR-TSRBLOD and the TR-RBLOD.
 
 For just taking a look at the experiment outputs and data, you do not need to
-install the software. Just go to `scripts/test_outputs/`,
-where we have stored printouts of our numerical experiments.
-In order to relate this data to the paper, we provide further information in the next section.
+install the software. Just go to `notebooks/` for taking a look at 1) and to `scripts/test_outputs/` for an extended overview concerning 2)
 
 If you want to have a closer look at the implementation or generate the results by
 yourself, we provide simple setup instructions for configuring your own Python environment.
 We note that our setup instructions are written for Ubuntu Linux only and we do not provide
 setup instructions for MacOS and Windows.
 Our setup instructions have successfully been tested on a fresh Ubuntu 20.04.2.0 LTS system.
-The actual experiments have been computed on the
+The actual experiments for 2) have been computed on the
 [PALMA II HPC cluster](<https://www.uni-muenster.de/IT/en/services/unterstuetzungsleistung/hpc/index.shtml>).
-
-# How to quickly find the data from the paper
-
-We provide information on how to relate the output files to the figures and tables in the paper.
-All output files and figures are stored in `scripts/test_outputs`.
-Note that the outputs are verbose outputs compared to the ones that we summarized in the respective tables in the paper,
-which is also the reason why we do not provide scripts for constructing the error plots and
-tables from the paper.
 
 # Organization of the repository
 
@@ -62,13 +74,13 @@ On a standard Ubuntu system (with Python and C compilers installed) it will most
 to just run our setup script. For that, please clone the repository
 
 ```
-git clone https://github.com/TiKeil/Trust-region-TSRBLOD-code.git
+git clone https://github.com/TiKeil/Supplementary-Material-for-PhD-thesis.git
 ```
 
 and execute the provided setup script via 
 
 ```
-cd Trust-region-TSRBLOD-code
+cd Supplementary-Material-for-PhD-thesis
 ./setup.sh
 ```
 
@@ -94,14 +106,23 @@ sudo apt install libsuitesparse-dev
 Now you are ready to clone the repository and run the setup script:
 
 ```
-git clone https://github.com/TiKeil/Trust-region-TSRBLOD-code.git
-cd Trust-region-TSRBLOD-code
+git clone https://github.com/TiKeil/Supplementary-Material-for-PhD-thesis.git
+cd Supplementary-Material-for-PhD-thesis
 ./setup.sh
 ```
 
-# Running the experiments
+# Running the code
 
-You can make sure your that setup is complete by running the minimal test script
+For the proof-of-concept experiment 1), just activate the venv and start a jupyter-notebook server
+```
+source venv/bin/activate
+jupyter-notebook --notebook-dir=notebooks
+```
+
+We recommend to use notebook extensions for a better overview in the notebooks.
+After starting the jupyter-notebook server go to Nbextensions, deactivate the first box and activate at least `codefolding` and `Collapsible Headings`.
+
+For 2), you can make sure your that setup is complete by running the minimal test script
 ```
 cd scripts/test_scripts
 mpirun python minimal_test.py
