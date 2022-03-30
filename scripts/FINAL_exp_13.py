@@ -50,17 +50,17 @@ print_on_ranks = True
     Variables for the experiment and discretization
 '''
 
-coarse_elements = 20
-n = 1200
+coarse_elements = 40
+n = 4000
 diameter = np.sqrt(2)/n
 
 two_scale_estimator_for_RBLOD = False
 save_correctors = False
 
-use_FEM = True
-#use_FEM = False
-use_fine_mesh = True
-#use_fine_mesh = False
+#use_FEM = True
+use_FEM = False
+#use_fine_mesh = True
+use_fine_mesh = False
 
 # skip_estimator = False
 skip_estimator = True
@@ -126,6 +126,7 @@ gridlod_model, _, _, _, _ = discretize_gridlod(global_problem, diameter, coarse_
                                                print_on_ranks=print_on_ranks)
 
 if not use_fine_mesh:
+    print('computing u_d with gridlod')
     u_d = gridlod_model.solve(mu_d, pool=pool)
     mu_for_u_d = None
 else:
@@ -205,12 +206,13 @@ mu = parameter_space.sample_randomly(1, seed=seed)[0]
 
 optimization_methods = [
     # FOM Method
-     # 'BFGS',
-     # 'BFGS_LOD',
+    #  'BFGS',
+      'BFGS_LOD',
     # TR-RB
         # NCD-corrected from KMSOV'20
-      #    'Method_RB', # TR-RB
+    #      'Method_RB', # TR-RB
         # localized BFGS
+          'Method_RBLOD',
           'Method_TSRBLOD',
     # R TR Methods
       'Method_R_TR'
@@ -432,9 +434,6 @@ if ('Method_R_TR' in optimization_methods and 'Method_RB' in optimization_method
     # print_RB_result(R_TRNCDRB_dict)
     print_iterations_and_walltime(len(times_full_ntr8_actual), times_full_ntr8_actual[-1])
     print('mu_error: ', mu_error_ntr8_actual[-1])
-    subproblem_time = data_ntr8['total_subproblem_time']
-    print(f'further timings:\n subproblem:  {subproblem_time:.3f}')
-
 counter.reset_counters()
 
 tic = time.time()
@@ -492,8 +491,6 @@ if 'Method_RB' in optimization_methods or 'All' in optimization_methods:
     # print_RB_result(TRNCDRB_dict)
     print_iterations_and_walltime(len(times_full_8_actual), times_full_8_actual[-1])
     print('mu_error: ', mu_error_8_actual[-1])
-    subproblem_time = data_8['total_subproblem_time']
-    print(f'further timings:\n subproblem:  {subproblem_time:.3f}')
 lod_counter.reset_counters()
 
 from pdeopt.RBLOD_reductor import QuadraticPdeoptStationaryCoerciveLODReductor

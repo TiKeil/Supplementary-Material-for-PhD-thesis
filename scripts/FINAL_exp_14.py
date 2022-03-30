@@ -50,8 +50,8 @@ print_on_ranks = True
     Variables for the experiment and discretization
 '''
 
-coarse_elements = 40
-n = 4000
+coarse_elements = 60
+n = 600
 diameter = np.sqrt(2)/n
 
 two_scale_estimator_for_RBLOD = False
@@ -206,12 +206,13 @@ mu = parameter_space.sample_randomly(1, seed=seed)[0]
 
 optimization_methods = [
     # FOM Method
-     # 'BFGS',
-      'BFGS_LOD',
+    #  'BFGS',
+    #  'BFGS_LOD',
     # TR-RB
         # NCD-corrected from KMSOV'20
-      #    'Method_RB', # TR-RB
+    #      'Method_RB', # TR-RB
         # localized BFGS
+          'Method_RBLOD',
           'Method_TSRBLOD',
     # R TR Methods
       'Method_R_TR'
@@ -554,7 +555,7 @@ lod_counter.reset_counters()
 # ONLY STAGE 1 in RBLOD
 
 tic = time.time()
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR RBLOD BFGS_____________________\n")
     pdeopt_reductor = QuadraticPdeoptStationaryCoerciveLODReductor(
         gridlod_opt_fom, f, opt_product=gridlod_opt_fom.opt_product, coercivity_estimator=ce,
@@ -594,7 +595,7 @@ if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
 
     time_sub_problem = data_8_loc['total_subproblem_time']
 
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR RBLOD BFGS_____________________\n")
     TRRBLOD_dict = lod_counter.print_result(True)
     # print_RBLOD_result(TRRBLOD_dict)
@@ -667,7 +668,7 @@ lod_counter.reset_counters()
 # ONLY STAGE 1 in RBLOD 
 
 tic = time.time()
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR TSRBLOD BFGS_____________________\n")
     pdeopt_reductor = QuadraticPdeoptStationaryCoerciveLODReductor(gridlod_opt_fom, f,
                                                 opt_product=gridlod_opt_fom.opt_product,
@@ -722,7 +723,7 @@ if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     time_sub_problem = data_8_tsloc['total_subproblem_time']
 
 
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR TSRBLOD BFGS_____________________\n")
     TSTRRBLOD_dict = lod_counter.print_result(True)
     # print_RBLOD_result(TSTRRBLOD_dict)
@@ -753,11 +754,11 @@ if 'Method_RB' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_actual,J_error_8_actual,'o-', label='TR-RB BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RB' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr8_actual,J_error_ntr8_actual,'o-', label='R TR-RB BFGS')
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_loc_actual,J_error_8_loc_actual,'o-', label='TR-RBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RBLOD' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntrrb_loc_actual,J_error_ntrrb_loc_actual,'o-', label='R TR-RBLOD BFGS')
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_tsloc_actual,J_error_8_tsloc_actual,'o-', label='TR-TSRBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_TSRBLOD' in optimization_methods) in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr_actual,J_error_ntr_actual,'o-', label='R TR-TSRBLOD BFGS')
@@ -784,11 +785,11 @@ if 'Method_RB' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_actual,FOC_8_actual,'o-', label='TR-RB BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RB' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr8_actual,FOC_ntr8_actual,'o-', label='R TR-RB BFGS')
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_loc_actual,FOC_8_loc_actual,'o-', label='TR-RBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RBLOD' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntrrb_loc_actual,FOC_ntrrb_loc_actual,'o-', label='R TR-RBLOD BFGS')
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_tsloc_actual,FOC_8_tsloc_actual,'o-', label='TR-TSRBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_TSRBLOD' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr_actual,FOC_ntr_actual,'o-', label='R TR-TSRBLOD BFGS')
@@ -812,11 +813,11 @@ if 'Method_RB' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_actual,mu_error_8_actual,'o-', label='TR-RB BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RB' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr8_actual,mu_error_ntr8_actual,'o-', label='R TR-RB BFGS')
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_loc_actual,mu_error_8_loc_actual,'o-', label='TR-RBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_RBLOD' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntrrb_loc_actual,mu_error_ntrrb_loc_actual,'o-', label='R TR-RBLOD BFGS')
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     plt.semilogy(times_full_8_tsloc_actual,mu_error_8_tsloc_actual,'o-', label='TR-TSRBLOD BFGS')
 if ('Method_R_TR' in optimization_methods and 'Method_TSRBLOD' in optimization_methods) or 'All' in optimization_methods:
     plt.semilogy(times_full_ntr_actual,mu_error_ntr_actual,'o-', label='R TR-TSRBLOD BFGS')
@@ -865,7 +866,7 @@ if ('Method_R_TR' in optimization_methods and 'Method_RB' in optimization_method
     print('mu_error : ', mu_error_ntr8_actual[-1])
     print('J_error  : ', J_error_ntr8_actual[-1])
     print('FOC      : ', FOC_ntr8_actual[-1])
-if 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_RBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR RBLOD BFGS_____________________\n")
     print_RBLOD_result(TRRBLOD_dict)
     print_iterations_and_walltime(len(times_full_8_loc_actual), times_full_8_loc_actual[-1])
@@ -879,7 +880,7 @@ if ('Method_R_TR' in optimization_methods and 'Method_RBLOD' in optimization_met
     print('mu_error : ', mu_error_ntrrb_loc_actual[-1])
     print('J_error  : ', J_error_ntrrb_loc_actual[-1])
     print('FOC      : ', FOC_ntrrb_loc_actual[-1])
-if 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
+if 0 and 'Method_TSRBLOD' in optimization_methods or 'All' in optimization_methods:
     print("\n________________TR TSRBLOD BFGS_____________________\n")
     print_RBLOD_result(TSTRRBLOD_dict)
     print_iterations_and_walltime(len(times_full_8_tsloc_actual), times_full_8_tsloc_actual[-1])
